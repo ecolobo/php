@@ -1,5 +1,5 @@
 <?php
-    if(!$link = new mysqli('146.148.107.234', 'root', 'Escudo2430!')) {
+    if(!$link = new PDO('146.148.107.234', 'root', 'Escudo2430!')) {
         echo 'Não foi possível conectar ao mysql';
         exit;
     }// fim do if(!$link = mysql_connect('146.148.107.234', 'root', 'Escudo2430!'))
