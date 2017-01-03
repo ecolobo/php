@@ -1,15 +1,7 @@
 <?php
-$servername = "146.148.107.234";
-$username = "root";
-$password = "Escudo2430!";
-$db = "guestbook";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $db);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
+if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
+    echo 'We don\'t have mysqli!!!';
+} else {
+    echo 'Phew we have it!';
+}
 ?>
