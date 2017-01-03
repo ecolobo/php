@@ -1,19 +1,26 @@
 <?php
-$servername = "146.148.107.234:3306";
-$username = "root";
-$password = "Escudo2430!";
-$dbname = "guestbook";
+    if(!$link = mysql_connect('146.148.107.234', 'root', 'Escudo2430!')) {
+        echo 'Não foi possível conectar ao mysql';
+        exit;
+    }// fim do if(!$link = mysql_connect('146.148.107.234', 'root', 'Escudo2430!'))
 
-try {
-    //$conn = new PDO("$servername, $username, $password, $dbname");
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    //$conn = new PDO("$servername", "$username", "$password", "$dbname");
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully"; 
-    }
-catch(PDOException $e)
-    {
-    echo "Connexao faiou... " . $e->getMessage();
-    }
+    if(!mysql_select_db('guestbook', $link)) {
+        echo 'Não foi possível selecionar o banco de dados';
+        exit;
+    }// fim do if(!mysql_select_db('guestbook', $link))
+
+    $sql = 'SELECT * FROM farma';
+    $result = mysql_query($sql, $link);
+
+    if(!$result) {
+        echo "Erro do banco de dados, não foi possível consultar o banco de dados\n";
+        echo 'Erro MySQL: '.mysql_error();
+        exit;
+    }// fim do if(!$result)
+
+    while($row = mysql_fetch_assoc($result)) {
+        echo $row['cidade'];
+    }// fim do while($row = mysql_fetch_assoc($result))
+
+    mysql_free_result($result);
 ?>
