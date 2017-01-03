@@ -1,8 +1,27 @@
-application: farma
-version: 1
 runtime: php55
 api_version: 1
+threadsafe: true
 
 handlers:
 - url: /.*
   script: PHPMySql.php
+
+# [START env]
+env_variables:
+  # Replace project, instance, database, user and password with the values obtained
+  # when configuring your Cloud SQL instance.
+  #MYSQL_DSN: mysql:unix_socket=/cloudsql/INSTANCE_CONNECTION_NAME;dbname=DATABASE
+  MYSQL_DSN: mysql:unix_socket=/cloudsql/dplmysql:us-central1:dplmysqlinstance;dbname=guestbook
+  MYSQL_USER: root
+  MYSQL_PASSWORD: 'Escudo2430!'
+# [END env]
+
+
+#application: farma
+#version: 1
+#runtime: php55
+#api_version: 1
+
+#handlers:
+#- url: /.*
+ # script: PHPMySql.php
